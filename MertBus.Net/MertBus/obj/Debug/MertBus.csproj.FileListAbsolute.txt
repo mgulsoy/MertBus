@@ -1,0 +1,4 @@
+c:\users\mert\documents\visual studio 2012\Projects\MertBus\MertBus\bin\Debug\MertBus.dll
+c:\users\mert\documents\visual studio 2012\Projects\MertBus\MertBus\bin\Debug\MertBus.pdb
+c:\users\mert\documents\visual studio 2012\Projects\MertBus\MertBus\obj\Debug\MertBus.dll
+c:\users\mert\documents\visual studio 2012\Projects\MertBus\MertBus\obj\Debug\MertBus.pdb

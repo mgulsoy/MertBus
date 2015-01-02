@@ -1,0 +1,10 @@
+c:\Users\mert\documents\visual studio 2012\Projects\MertBus\MertBusTestApp\bin\Debug\MertBusTestApp.exe
+c:\Users\mert\documents\visual studio 2012\Projects\MertBus\MertBusTestApp\bin\Debug\MertBusTestApp.pdb
+c:\Users\mert\documents\visual studio 2012\Projects\MertBus\MertBusTestApp\bin\Debug\MertBus.dll
+c:\Users\mert\documents\visual studio 2012\Projects\MertBus\MertBusTestApp\bin\Debug\MertBus.pdb
+c:\Users\mert\documents\visual studio 2012\Projects\MertBus\MertBusTestApp\obj\Debug\MertBusTestApp.csprojResolveAssemblyReference.cache
+c:\Users\mert\documents\visual studio 2012\Projects\MertBus\MertBusTestApp\obj\Debug\MertBusTestApp.Form1.resources
+c:\Users\mert\documents\visual studio 2012\Projects\MertBus\MertBusTestApp\obj\Debug\MertBusTestApp.Properties.Resources.resources
+c:\Users\mert\documents\visual studio 2012\Projects\MertBus\MertBusTestApp\obj\Debug\MertBusTestApp.csproj.GenerateResource.Cache
+c:\Users\mert\documents\visual studio 2012\Projects\MertBus\MertBusTestApp\obj\Debug\MertBusTestApp.exe
+c:\Users\mert\documents\visual studio 2012\Projects\MertBus\MertBusTestApp\obj\Debug\MertBusTestApp.pdb
