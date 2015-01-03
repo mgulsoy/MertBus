@@ -10,6 +10,7 @@
 //Constants
 #define MIN_CHARS_TO_WAIT 4
 #define CRC_SEED 0xE6
+#define BROADCAST_ID 0xFF
 
 
  /* Functions */
@@ -63,7 +64,7 @@ boolean MertBus::checkData() {
 			return false; //timeout
 
 		//check if id matches:
-		if (_id == frameHeader.target_id) {
+		if (_id == frameHeader.target_id | _id == BROADCAST_ID) {
                         //checksum calculation
                         byte crc = CRC_SEED; //seed
                         for (byte i = 0; i < ReceiveCount; i++)
