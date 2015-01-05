@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 //Constants
-#define MIN_CHARS_TO_WAIT 4
+#define MIN_CHARS_TO_WAIT 5
 #define CRC_SEED 0xE6
 #define BROADCAST_ID 0xFF
 
@@ -38,7 +38,8 @@ MertBus::MertBus(Stream &port, uint8_t TransmitEnablePin, uint8_t nodeId) {
 	frameHeader.source_id = 0; //sender
 	frameHeader.payload_size = 0;
         
-        //allocate 1 byte for buffer ???
+        //allocate 2 bytes for buffer
+        Buffer = (char*)malloc(2); //init buffer
 }
 
 boolean MertBus::checkData() {
@@ -51,8 +52,8 @@ boolean MertBus::checkData() {
 		frameHeader.payload_size = _port->read(); //packet size set from header.
 
 		//receive payload
-                Buffer = (char*)malloc(frameHeader.payload_size+1); //init buffer
-                Buffer[frameHeader.payload_size] = 0; //set last element to null
+                Buffer = (char*)malloc(frameHeader.payload_size); //init buffer
+                //Buffer[frameHeader.payload_size] = 0; //set last element to null
 		ReceiveCount = _port->readBytes(Buffer,frameHeader.payload_size);		
 
 		//Receive checksum
@@ -64,7 +65,7 @@ boolean MertBus::checkData() {
 			return false; //timeout
 
 		//check if id matches:
-		if (_id == frameHeader.target_id | _id == BROADCAST_ID) {
+		if ((_id == frameHeader.target_id) | (_id == BROADCAST_ID)) {
                         //checksum calculation
                         byte crc = CRC_SEED; //seed
                         for (byte i = 0; i < ReceiveCount; i++)
