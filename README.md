@@ -13,4 +13,4 @@ Please check the link below for Turkish documents:
 Türkçe dökümanlar ve kullanım için aşağıdaki linke gidin:
 http://www.miniteknoloji.com/?p=97
 
-This library is based on NO STANDART and still in development. I do not give any guarantee to work. If you use the code here the responsibility is yours! It may look like ModBus but it is not! 
+This library is based on NON OF ANY STANDARTS and still in development. I do not give any guarantee to work. If you use the code here the responsibility is yours! It may look like ModBus but it is not! 
