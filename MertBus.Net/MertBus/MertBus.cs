@@ -17,6 +17,7 @@ namespace com.miniteknoloji
         byte _id;
         Task _poller;
         Boolean _canPoll;
+        private const byte BROADCAST_ID = (Byte)0xFF ;
         #endregion
 
         #region |:.Public.:|
@@ -34,8 +35,8 @@ namespace com.miniteknoloji
         /// <summary>
         /// Initializes the communitation object. 
         /// </summary>
-        /// <param name="port"></param>
-        /// <param name="node_id"></param>
+        /// <param name="port">Serial Port to use</param>
+        /// <param name="node_id">The self id or self address</param>
         /// <remarks>
         /// The port should be open and available. Any baud can be used but over 28800 baud
         /// is recommended! 
@@ -52,7 +53,7 @@ namespace com.miniteknoloji
             _poller = Task.Factory.StartNew( new Action( () => {
                 #region |:.Poller thread.:|
                 while (_canPoll) {
-                    if (_port.BytesToRead > 6) {
+                    if (_port.BytesToRead > 5) {
                         Frame f = null;
                         try {
                             f = Frame.CreateFromReceivedData( _port );
@@ -69,11 +70,21 @@ namespace com.miniteknoloji
                             System.Diagnostics.Debug.Print( "Serial port frame reader: error: " + ex.Message);
                             continue;
                         }
+
+                        if (System.Diagnostics.Debugger.IsAttached) {
+                            System.Diagnostics.Debug.Write( "(MertBus) Received Data: " );
+                            for (int i = 0; i < f.Payload.Length; i++) {
+                                System.Diagnostics.Debug.Write( f.Payload[i].ToString( "X2" ) );
+                                System.Diagnostics.Debug.Write( " " );
+                            }
+                            System.Diagnostics.Debug.WriteLine(" ");
+                        }
                         
 
                         if (this.OnDataReceived != null)
                             try {
-                                this.OnDataReceived( f.Payload, f.SenderId );
+                                if (f.ReceiverId == _id || f.ReceiverId == BROADCAST_ID) //receive just only data for me and broadcasted
+                                    this.OnDataReceived( f.Payload, f.SenderId );
                             } catch (Exception) {
                                 //do nothing                                    
                             }
@@ -87,6 +98,11 @@ namespace com.miniteknoloji
         #endregion
 
         #region |:.Methods.:|
+        /// <summary>
+        /// Sends data to specific node
+        /// </summary>
+        /// <param name="to_node">node id to send data</param>
+        /// <param name="data">it is obvious aint it?</param>
         public void SendData( byte to_node, Byte[] data ) {
             //Prepare frame
             Frame f = new Frame();
@@ -97,9 +113,13 @@ namespace com.miniteknoloji
             _port.Write( f.Buffer, 0, f.Size );            
         }
 
-        //public void Reply( Byte[] data ) {
-
-        //}
+        /// <summary>
+        /// Broadcasts data to all nodes.
+        /// </summary>
+        /// <param name="data">Data</param>
+        public void BroadcastData( Byte[] data ) {
+            this.SendData( BROADCAST_ID, data );
+        }
         #endregion
 
         #region |:.Inner/Private Classes.:|
@@ -166,9 +186,8 @@ namespace com.miniteknoloji
                 Byte _crc_incoming = Convert.ToByte( _p.ReadByte() );
 
                 _f.Payload = _data;
-
-                String _dataAsText = Encoding.ASCII.GetString( _data );
-                System.Diagnostics.Debug.Print( "Received Data As Text: " + _dataAsText );
+                //String _dataAsText = Encoding.ASCII.GetString( _data );
+                //System.Diagnostics.Debug.Print( "Received Data As Text: " + _dataAsText );
 
                 if (_f.Crc != _crc_incoming)
                     throw new CrcNotMatchException();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -44,6 +45,15 @@ namespace MertBusTestApp {
         private void button2_Click( object sender, EventArgs e ) {
             mb.SendData( 1, new byte[] { (byte)'A', (byte)'X' } );
             textBox1.AppendText( "Sent data: AX" + Environment.NewLine );
+            
+        }
+
+        private void button3_Click( object sender, EventArgs e ) {
+            byte[] bx = new byte[] { 0x40, 0x42, 0x0F, 0x00 };
+
+            uint val = BitConverter.ToUInt32( bx, 0 );
+
+            Debug.Print( val.ToString() );
         }
     }
 }

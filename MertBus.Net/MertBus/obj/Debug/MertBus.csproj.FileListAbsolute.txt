@@ -1,4 +1,5 @@
-c:\users\mert\documents\visual studio 2012\Projects\MertBus\MertBus\bin\Debug\MertBus.dll
-c:\users\mert\documents\visual studio 2012\Projects\MertBus\MertBus\bin\Debug\MertBus.pdb
-c:\users\mert\documents\visual studio 2012\Projects\MertBus\MertBus\obj\Debug\MertBus.dll
-c:\users\mert\documents\visual studio 2012\Projects\MertBus\MertBus\obj\Debug\MertBus.pdb
+C:\Users\mert\Documents\Visual Studio 2012\Projects\MertBus\MertBus\bin\Debug\MertBus.dll
+C:\Users\mert\Documents\Visual Studio 2012\Projects\MertBus\MertBus\bin\Debug\MertBus.pdb
+C:\Users\mert\Documents\Visual Studio 2012\Projects\MertBus\MertBus\obj\Debug\MertBus.csprojResolveAssemblyReference.cache
+C:\Users\mert\Documents\Visual Studio 2012\Projects\MertBus\MertBus\obj\Debug\MertBus.dll
+C:\Users\mert\Documents\Visual Studio 2012\Projects\MertBus\MertBus\obj\Debug\MertBus.pdb
