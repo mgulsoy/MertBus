@@ -25,10 +25,12 @@ void loop() {
      Received data byte count is a variable so it can be checked from mb.ReceiveCount
   */
   if(mb.checkData()) { 
-    for (int i=0; i<mb.ReceiveCount; i++) { //reply every bytes back to sender.
-      mb.reply("Gelen Data (SendData): ",mb.Buffer[i]); //with mb.reply it is not needed to know the sender id. 
-    }
-    mb.reply(mb.Buffer,mb.ReceiveCount);
+    /* Reply every bytes back to sender.
+        With mb.reply you dont need to know the sender id (address). The library keeps the sender address 
+        for received packages.
+    */
+    mb.reply("Gelen Data (SendData): ",23); //text is any data. 23 is the length
+    mb.reply(mb.Buffer,mb.ReceiveCount); //we reply the data back as it is.
   } else { //no data. Do sth else...
     digitalWrite(13,HIGH);
     delay(400);
