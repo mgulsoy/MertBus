@@ -42,6 +42,7 @@ class MertBus
 		Replies to the last packet sender.
 	*/
 	void reply(char * buffer,uint8_t buffer_size);
+	void reply(char data);
 	/*
 		Gives the size of the received buffer.
 	*/
@@ -50,17 +51,34 @@ class MertBus
 		Data buffer to receive frame payload.
 	*/
 	char * Buffer ;
+	/*
+                CheckSum error on previous frame
+        */
+        boolean ChecksumError ;
+        /*
+                Receive Timeout on previous frame
+        */
+        boolean ReceiveTimeout ;
+        /*
+                Invalid header (0x00) on previous frame
+        */
+        boolean InvalidHeader ;
+        /*
+                Returns the number of failed frames
+        */
+        uint16_t GetFailedFrameCount();
   private:
-	Stream *_port;
+	HardwareSerial *_port; //
 	uint8_t _sendEnablePin,_id;
 	struct FrameHeader {
-		char	start;
-		char	target_id;
-		char    source_id;
-		byte	payload_size;
-		byte    checksum;
+		int	start;
+		int	target_id;
+		int     source_id;
+		int	payload_size;
+		int     checksum;
 	} frameHeader;
-	float _waitDur;
+	//float _waitDur;
+        uint16_t _errFrameCount;
 	
 };
 
